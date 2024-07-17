@@ -65,18 +65,6 @@ const ActivitiesData = [
 
     // type code here for "relation_one" field
   },
-
-  {
-    description: 'Strategy session with Future Enterprises',
-
-    start_time: new Date('2023-10-05T19:00:00Z'),
-
-    end_time: new Date('2023-10-05T20:00:00Z'),
-
-    // type code here for "relation_one" field
-
-    // type code here for "relation_one" field
-  },
 ];
 
 const ContactsData = [
@@ -127,18 +115,6 @@ const ContactsData = [
 
     // type code here for "relation_one" field
   },
-
-  {
-    first_name: 'Eve',
-
-    last_name: 'Wilson',
-
-    email: 'eve.wilson@example.com',
-
-    phone: '567-890-1234',
-
-    // type code here for "relation_one" field
-  },
 ];
 
 const LeadsData = [
@@ -147,7 +123,7 @@ const LeadsData = [
 
     status: 'New',
 
-    category: 'New',
+    category: 'Qualified',
 
     // type code here for "relation_one" field
   },
@@ -167,7 +143,7 @@ const LeadsData = [
 
     status: 'Qualified',
 
-    category: 'Lost',
+    category: 'Contacted',
 
     // type code here for "relation_one" field
   },
@@ -177,17 +153,7 @@ const LeadsData = [
 
     status: 'Lost',
 
-    category: 'Lost',
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    name: 'Future Enterprises',
-
-    status: 'New',
-
-    category: 'Qualified',
+    category: 'New',
 
     // type code here for "relation_one" field
   },
@@ -225,14 +191,6 @@ const MetricsData = [
 
     recorded_at: new Date('2023-10-04T13:00:00Z'),
   },
-
-  {
-    name: 'Churn Rate',
-
-    value: 0.05,
-
-    recorded_at: new Date('2023-10-05T14:00:00Z'),
-  },
 ];
 
 const NotesData = [
@@ -262,14 +220,6 @@ const NotesData = [
 
   {
     content: 'Lost lead with Tech Dynamics.',
-
-    // type code here for "relation_one" field
-
-    // type code here for "relation_one" field
-  },
-
-  {
-    content: 'Initial meeting scheduled with Future Enterprises.',
 
     // type code here for "relation_one" field
 
@@ -325,18 +275,6 @@ const ReportsData = [
 
     // type code here for "relation_many" field
   },
-
-  {
-    title: 'Marketing Campaign Report',
-
-    description: 'Evaluation of recent marketing campaigns and their impact.',
-
-    generated_at: new Date('2023-10-05T14:00:00Z'),
-
-    // type code here for "relation_many" field
-
-    // type code here for "relation_many" field
-  },
 ];
 
 const ResourcesData = [
@@ -372,85 +310,63 @@ const ResourcesData = [
 
     published_at: new Date('2023-10-04T13:00:00Z'),
   },
-
-  {
-    title: 'Marketing for Law Firms',
-
-    content: 'Effective marketing techniques tailored for law firms.',
-
-    published_at: new Date('2023-10-05T14:00:00Z'),
-  },
 ];
 
 const CompaniesData = [
   {
-    companyName: 'Ernest Rutherford',
+    companyName: 'William Harvey',
 
-    ruc: 'Noam Chomsky',
+    ruc: 'Hans Selye',
 
-    razonSocial: 'Ernst Haeckel',
-
-    // type code here for "relation_many" field
-
-    address: 'Charles Lyell',
-
-    phones: 'Murray Gell-Mann',
-  },
-
-  {
-    companyName: 'Charles Lyell',
-
-    ruc: 'Johannes Kepler',
-
-    razonSocial: 'Nicolaus Copernicus',
+    razonSocial: 'John Bardeen',
 
     // type code here for "relation_many" field
 
-    address: 'Werner Heisenberg',
+    address: 'Heike Kamerlingh Onnes',
 
-    phones: 'Max Planck',
+    phones: 'Charles Darwin',
   },
 
   {
     companyName: 'Alexander Fleming',
 
-    ruc: 'Euclid',
+    ruc: 'Dmitri Mendeleev',
 
-    razonSocial: 'Justus Liebig',
-
-    // type code here for "relation_many" field
-
-    address: 'John Dalton',
-
-    phones: 'Max Planck',
-  },
-
-  {
-    companyName: 'William Bayliss',
-
-    ruc: 'Tycho Brahe',
-
-    razonSocial: 'James Watson',
-
-    // type code here for "relation_many" field
-
-    address: 'August Kekule',
-
-    phones: 'Emil Kraepelin',
-  },
-
-  {
-    companyName: 'Charles Sherrington',
-
-    ruc: 'Albert Einstein',
-
-    razonSocial: 'George Gaylord Simpson',
+    razonSocial: 'Paul Ehrlich',
 
     // type code here for "relation_many" field
 
     address: 'J. Robert Oppenheimer',
 
-    phones: 'Leonard Euler',
+    phones: 'Nicolaus Copernicus',
+  },
+
+  {
+    companyName: 'Ernst Mayr',
+
+    ruc: 'Ludwig Boltzmann',
+
+    razonSocial: 'Werner Heisenberg',
+
+    // type code here for "relation_many" field
+
+    address: 'August Kekule',
+
+    phones: 'J. Robert Oppenheimer',
+  },
+
+  {
+    companyName: 'Claude Bernard',
+
+    ruc: 'Carl Gauss (Karl Friedrich Gauss)',
+
+    razonSocial: 'Noam Chomsky',
+
+    // type code here for "relation_many" field
+
+    address: 'Robert Koch',
+
+    phones: 'Johannes Kepler',
   },
 ];
 
@@ -500,17 +416,6 @@ async function associateActivityWithUser() {
   if (Activity3?.setUser) {
     await Activity3.setUser(relatedUser3);
   }
-
-  const relatedUser4 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Activity4 = await Activities.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Activity4?.setUser) {
-    await Activity4.setUser(relatedUser4);
-  }
 }
 
 async function associateActivityWithLead() {
@@ -556,17 +461,6 @@ async function associateActivityWithLead() {
   });
   if (Activity3?.setLead) {
     await Activity3.setLead(relatedLead3);
-  }
-
-  const relatedLead4 = await Leads.findOne({
-    offset: Math.floor(Math.random() * (await Leads.count())),
-  });
-  const Activity4 = await Activities.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Activity4?.setLead) {
-    await Activity4.setLead(relatedLead4);
   }
 }
 
@@ -614,17 +508,6 @@ async function associateContactWithLead() {
   if (Contact3?.setLead) {
     await Contact3.setLead(relatedLead3);
   }
-
-  const relatedLead4 = await Leads.findOne({
-    offset: Math.floor(Math.random() * (await Leads.count())),
-  });
-  const Contact4 = await Contacts.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Contact4?.setLead) {
-    await Contact4.setLead(relatedLead4);
-  }
 }
 
 async function associateLeadWithOwner() {
@@ -670,17 +553,6 @@ async function associateLeadWithOwner() {
   });
   if (Lead3?.setOwner) {
     await Lead3.setOwner(relatedOwner3);
-  }
-
-  const relatedOwner4 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Lead4 = await Leads.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Lead4?.setOwner) {
-    await Lead4.setOwner(relatedOwner4);
   }
 }
 
@@ -728,17 +600,6 @@ async function associateNoteWithUser() {
   if (Note3?.setUser) {
     await Note3.setUser(relatedUser3);
   }
-
-  const relatedUser4 = await Users.findOne({
-    offset: Math.floor(Math.random() * (await Users.count())),
-  });
-  const Note4 = await Notes.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Note4?.setUser) {
-    await Note4.setUser(relatedUser4);
-  }
 }
 
 async function associateNoteWithLead() {
@@ -784,17 +645,6 @@ async function associateNoteWithLead() {
   });
   if (Note3?.setLead) {
     await Note3.setLead(relatedLead3);
-  }
-
-  const relatedLead4 = await Leads.findOne({
-    offset: Math.floor(Math.random() * (await Leads.count())),
-  });
-  const Note4 = await Notes.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Note4?.setLead) {
-    await Note4.setLead(relatedLead4);
   }
 }
 
